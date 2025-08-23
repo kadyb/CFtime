@@ -1,6 +1,9 @@
 # CFtime (development version)
 
 * CFtime is now hosted on Github through the R-CF organization: all things related to the CF Metadata Conventions in R.
+* New sequence-like method to create `CFTime` instances.
+* New methods `CFTime$copy()` and `CFTime$subset()` to create copies of the entire `CFTime` instance or a subset thereof, including boundary values if they are set.
+* Fixed error on year 0 timestamps.
 
 # CFtime 1.6.2
 
