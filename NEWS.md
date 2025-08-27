@@ -1,4 +1,4 @@
-# CFtime (development version)
+# CFtime 1.7.0
 
 * CFtime is now hosted on Github through the R-CF organization: all things related to the CF Metadata Conventions in R.
 * New sequence-like method to create `CFTime` instances.
