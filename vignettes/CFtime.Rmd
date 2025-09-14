@@ -93,7 +93,7 @@ fn <- list.files(path = system.file("extdata", package = "CFtime"), full.names =
 (time <- ds[["time"]])
 
 # Get the CFTime instance from the "time" axis
-(t <- time$time())
+(t <- time$time)
 ```
 
 You can see from the global attribute "Conventions" that the file adheres to the CF Metadata Conventions, among others. According to the CF conventions, `units` and `calendar` are required attributes of the "time" dimension in the netCDF file.

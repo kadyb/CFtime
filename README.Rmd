@@ -94,7 +94,7 @@ ds$attribute("license")
 dimnames(ds)
 
 # Get the CFTime instance from the "time" axis
-(time <- ds[["time"]]$time())
+(time <- ds[["time"]]$time)
 ```
 
 Note that the `ncdfCF` package reads the netCDF file and interprets its contents on the basis of its attribute values. If an axis is found that represents time, then a `CFTime` instance is created for it, which can be accessed with the `time()` method.
@@ -133,10 +133,10 @@ ds2046 <- open_ncdf("~/pr_CAM-22_MOHC-HadGEM2-ES_rcp26_r1i1p1_GERICS-REMO2015_v1
 
 # Create the time object from the first file
 # All files have an identical "time" axis as per the CORDEX specifications
-time <- ds2041[["time"]]$time()
+time <- ds2041[["time"]]$time
 
 # Add the time values from the remaining files
-time <- time + ds2046[["pr"]]$time()$offsets
+time <- time + ds2046[["pr"]]$time$offsets
 
 # Grab the data from the files and merge the arrays into one, in the same order
 # as the time values

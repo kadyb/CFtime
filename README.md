@@ -170,7 +170,7 @@ dimnames(ds)
 #> [1] "bnds" "lat"  "time" "lon"
 
 # Get the CFTime instance from the "time" axis
-(time <- ds[["time"]]$time())
+(time <- ds[["time"]]$time)
 #> CF calendar:
 #>   Origin  : 1850-01-01T00:00:00
 #>   Units   : days
@@ -225,10 +225,10 @@ ds2046 <- open_ncdf("~/pr_CAM-22_MOHC-HadGEM2-ES_rcp26_r1i1p1_GERICS-REMO2015_v1
 
 # Create the time object from the first file
 # All files have an identical "time" axis as per the CORDEX specifications
-time <- ds2041[["time"]]$time()
+time <- ds2041[["time"]]$time
 
 # Add the time values from the remaining files
-time <- time + ds2046[["pr"]]$time()$offsets
+time <- time + ds2046[["pr"]]$time$offsets
 
 # Grab the data from the files and merge the arrays into one, in the same order
 # as the time values

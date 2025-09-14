@@ -28,7 +28,7 @@ Climate projection data sets are produced in a variety of formats but all confor
 Individual files containing climate projections contain global, regional or local data, typically on a rectangular latitude-longitude grid, for a single parameter such as "near-surface temperature", and for a number of time steps. An analysis workflow then consists of a number of steps:
 
  - Download the appropriate data files for your desired combination of model, experiment, realization, geography, time range, parameter, ... (called a "data suite" henceforth). If your analysis involves multiple parameters (such as temperature and precipitation to estimate crop productivity), repeat the process for all parameters. If you want to make a multi-model ensemble to reduce model bias, repeat again for all desired model, experiment and realization combinations ("ensemble member"). You end up having one or more data suites to work with.
- - Take all files in a data suite and extract the data. Process the data in the data suite. Since the data are (mostly) 3-dimensional arrays, this will involve binding the arrays on the right dimension and then do something like `apply(data, 1:2, tapply, f, fun)` (following the CF Metadata Conventions, dimensions 1 and 2 are "longitude" and "latitude", respectively; the third dimension is "time"; none of this is standardized though and deviations are out there; package `ncdfCF` can help with the `CFData$array()` method). Repeat for the data suite for each ensemble member.
+ - Take all files in a data suite and extract the data. Process the data in the data suite. Since the data are (mostly) 3-dimensional arrays, this will involve binding the arrays on the right dimension and then do something like `apply(data, 1:2, tapply, f, fun)` (following the CF Metadata Conventions, dimensions 1 and 2 are "longitude" and "latitude", respectively; the third dimension is "time"; none of this is standardized though and deviations are out there; package `ncdfCF` can help with the `CFVariable$array()` method). Repeat for the data suite for each ensemble member.
  - Combine the above results as your workflow requires. Frequently this involves computing "anomalies": ratio the data for one or more future periods to a baseline period. Repeat for each ensemble member.
  - Construct the multi-model ensemble from the individual ensemble members.
  
@@ -46,7 +46,7 @@ fn <- list.files(path = system.file("extdata", package = "CFtime"), full.names =
 (ds <- ncdfCF::open_ncdf(fn))
 
 # The T axis, with name "time" has a CFTime instance
-t <- ds[["time"]]$time()
+t <- ds[["time"]]$time
 
 # Create monthly factors for a baseline era and early, mid and late 21st century eras
 baseline <- t$factor(era = 1991:2020)
@@ -59,9 +59,9 @@ Building on the examples above of opening a file, creating a `CFTime` instance a
 
 ```{r}
 # Get the data for the "pr" data variable from the netCDF data set.
-# The `CFData$array()` method ensures that data are in standard R orientation.
+# The `CFVariable$array()` method ensures that data are in standard R orientation.
 # Converts units of kg m-2 s-1 to mm/day.
-pr <- ds[["pr"]]$data()$array() * 86400
+pr <- ds[["pr"]]$array() * 86400
 
 # Get a global attribute from the file
 experiment <- ds$attribute("experiment_id")
@@ -103,8 +103,8 @@ lf <- list.files(path = system.file("extdata", package = "CFtime"), full.names =
 # ano is here a list with each element holding the results for a single model
 ano <- lapply(lf, function(fn) {
   ds <- ncdfCF::open_ncdf(fn)
-  t <- ds[["time"]]$time()
-  pr <- ds[["pr"]]$data()$array() * 86400
+  t <- ds[["time"]]$time
+  pr <- ds[["pr"]]$array() * 86400
 
   baseline <- t$factor(era = 1991:2020)
   pr_base <- apply(pr, 1:2, tapply, baseline, mean)
@@ -147,10 +147,10 @@ prepare_CORDEX <- function(fn, var, aoi) {
     ds <- ncdfCF::open_ncdf(fn[i])
     if (i == 1) {
       # Get a CFTime instance from the first file
-      t <- ds[["time"]]$time()
+      t <- ds[["time"]]$time
     } else {
       # Add offsets from the file and add to the CFTime instance
-      t <- t + ds[["time"]]$time()$offsets
+      t <- t + ds[["time"]]$time$offsets
     }
     
     # Put the subsetted data array in the list
