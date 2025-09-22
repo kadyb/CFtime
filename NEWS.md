@@ -1,6 +1,9 @@
 # CFtime (development version)
 
+Maintenance release
+
 * Added `length` field to class `CFTime`.
+* Added `format.CFTime()` S3 method.
 * Vignettes updated to match the new structure of package `ncdfCF`
 
 # CFtime 1.7.0 - August 2025

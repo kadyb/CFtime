@@ -224,7 +224,7 @@ method to generate \code{POSIXct} timestamps (observed data generally uses a
 "standard" calendar) and then use the \code{\link[base:format]{base::format()}} function which
 supports the full set of specifiers.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CFTime$format(format)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CFTime$format(format, usetz = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -233,6 +233,10 @@ supports the full set of specifiers.
 \item{\code{format}}{A character string with \code{strptime} format specifiers. If
 omitted, the most economical format will be used: a full timestamp when
 time information is available, a date otherwise.}
+
+\item{\code{usetz}}{Logical. Should the time zone offset be appended to the
+output? This is always in numerical form, i.e. "-0800", from UTC.
+Default is \code{FALSE}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -420,7 +424,7 @@ Can the time series be converted to POSIXt?
 }
 
 \subsection{Returns}{
-\code{TRUE} if the calendar support coversion to POSIXt, \code{FALSE}
+\code{TRUE} if the calendar support conversion to POSIXt, \code{FALSE}
 otherwise.
 }
 }

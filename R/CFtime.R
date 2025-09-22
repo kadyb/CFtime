@@ -217,17 +217,25 @@ CFTime <- R6::R6Class("CFTime",
     #' @param format A character string with `strptime` format specifiers. If
     #'   omitted, the most economical format will be used: a full timestamp when
     #'   time information is available, a date otherwise.
+    #' @param usetz Logical. Should the time zone offset be appended to the
+    #'   output? This is always in numerical form, i.e. "-0800", from UTC.
+    #'   Default is `FALSE`.
     #' @return A vector of character strings with a properly formatted
     #'   timestamp. Any format specifiers not recognized or supported will be
     #'   returned verbatim.
-    format = function(format) {
+    format = function(format, usetz = FALSE) {
       if (length(self$offsets) == 0L) return(character(0L))
       if (missing(format)) format <- ""
       else if (!is.character(format) || length(format) != 1L)
         stop("`format` argument must be a character string with formatting specifiers", call. = FALSE)
 
       ts <- self$cal$offsets2time(self$offsets)
-      .format_format(ts, self$cal$timezone, format)
+      if ((usetz || grepl("%z$", format)) && .has_time(ts)) {
+        tz <- self$cal$timezone
+        if (!grepl("%z$", format))
+          format <- paste0(format, "%z")
+      } else tz <- ""
+      .format_format(ts, tz, format)
     },
 
     #' @description Find the index in the time series for each timestamp given

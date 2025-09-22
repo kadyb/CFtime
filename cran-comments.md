@@ -5,17 +5,11 @@
 * Additional checks have been performed with GHA and devtools::check(remote = TRUE, manual = TRUE)
 and devtools::check_win_devel().
 
-* This minor release 1.7.0 has some new functions and fixes an error.
+* This patch release 1.7.1 has some new functions and updates the documentation to the latest version of imported package ncdfCF to clear a breaking change.
 
 ## revdepcheck results
 
 We checked 5 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
- * We failed to check 1 packages
-
-Issues with CRAN packages are summarised below.
-
-### Failed to check
-
-* dacc (NA): This package uses a CFtime function that has been deprecated over a year ago and removed in this release. The maintainer was notified of this change, including the required (and very trivial) change in the code of that package.
+ * We failed to check 0 packages
