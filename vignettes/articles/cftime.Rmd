@@ -1,10 +1,5 @@
 ---
 title: "Working with CFtime"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Working with CFtime}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -13,7 +8,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
 
 ```{r setup, include = FALSE}
 library(CFtime)

@@ -1,10 +1,5 @@
 ---
 title: "Conformance with the CF Metadata Conventions"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Conformance with the CF Metadata Conventions}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

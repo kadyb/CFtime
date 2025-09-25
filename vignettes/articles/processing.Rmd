@@ -1,10 +1,5 @@
 ---
 title: "Processing climate projection data"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Processing climate projection data}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

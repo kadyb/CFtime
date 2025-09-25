@@ -8,3 +8,7 @@
 ^CRAN-SUBMISSION$
 ^revdep$
 ^LocalStuff$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^vignettes/articles$
