@@ -21,8 +21,7 @@ Imports:
 Suggests: 
     rmarkdown,
     testthat (>= 3.0.0),
-    stringr,
-    ncdfCF
+    stringr
 URL: https://github.com/R-CF/CFtime, https://r-cf.github.io/CFtime/
 BugReports: https://github.com/R-CF/CFtime/issues
 Config/testthat/edition: 3
